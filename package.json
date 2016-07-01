@@ -1,0 +1,19 @@
+{
+  "name": "project_template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kitskan/project_template.git"
+  },
+  "author": "Kitskan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kitskan/project_template/issues"
+  },
+  "homepage": "https://github.com/Kitskan/project_template#readme"
+}
