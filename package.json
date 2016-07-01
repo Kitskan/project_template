@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Kitskan/project_template/issues"
   },
-  "homepage": "https://github.com/Kitskan/project_template#readme"
+  "homepage": "https://github.com/Kitskan/project_template#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
 }
