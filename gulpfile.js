@@ -3,6 +3,7 @@ var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var minifyCSS = require('gulp-minify-css');
 var rename = require("gulp-rename");
+var gcmq = require('gulp-group-css-media-queries');
 
 /*Sass*/
 gulp.task('sass', function () {
@@ -17,6 +18,7 @@ gulp.task('css', function() {
             browsers: ['last 2 versions', '> 3%','ie 6-8'],
             cascade: false
         }))
+        .pipe(gcmq())
         .pipe(gulp.dest('dist/css/'))
         .pipe(minifyCSS())
         .pipe(rename("style.min.css"))
