@@ -23,7 +23,6 @@ gulp.task('css', function() {
         .pipe(minifyCSS())
         .pipe(rename("style.min.css"))
         .pipe(gulp.dest('dist/css/'))
-
 });
 /*Watch*/
 gulp.task('watch', function () {
