@@ -36,4 +36,4 @@ gulp.task('serv', function(){
   });
   browserSync.watch('dist/**/*.*').on('change', browserSync.reload);
 });
-gulp.task('default',['watch', 'serv']);
+gulp.task('default', ['watch', 'serv']);
