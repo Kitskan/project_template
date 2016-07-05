@@ -4,6 +4,7 @@ var autoprefixer = require('gulp-autoprefixer');
 var minifyCSS = require('gulp-minify-css');
 var rename = require("gulp-rename");
 var gcmq = require('gulp-group-css-media-queries');
+var browserSync = require('browser-sync').create();
 
 /*Sass*/
 gulp.task('sass', function () {
@@ -29,4 +30,10 @@ gulp.task('watch', function () {
     gulp.watch('app/sass/style.scss', ['sass']);
     gulp.watch('dist/css/style.css', ['css']);
 });
-gulp.task('default', ['watch']);
+gulp.task('serv', function(){
+  browserSync.init({
+    server: 'dist'
+  });
+  browserSync.watch('dist/**/*.*').on('change', browserSync.reload);
+});
+gulp.task('default',['watch', 'serv']);
