@@ -1,6 +1,8 @@
+'use strict'
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
+var htmlAutoprefixer = require( "gulp-html-autoprefixer");
 var minifyCSS = require('gulp-minify-css');
 var rename = require("gulp-rename");
 var gcmq = require('gulp-group-css-media-queries');
@@ -34,13 +36,20 @@ gulp.task('css', function() {
         .pipe(rename("style.min.css"))
         .pipe(gulp.dest('dist/css/'))
 });
+/*Html*/
+gulp.task('html', function () {
+    gulp.src('app/**/*.html')
+        .pipe(htmlAutoprefixer())
+        .pipe(gulp.dest('dist/'))
+});
 /*Build*/
-gulp.task('build', ['script', 'sass', 'css']);
+gulp.task('build', ['script', 'sass', 'css', 'html']);
 /*Watch*/
 gulp.task('watch', function () {
     gulp.watch('app/sass/style.scss', ['sass']);
     gulp.watch('dist/css/style.css', ['css']);
     gulp.watch('app/js/**/*.js', ['script']);
+    gulp.watch('dist/**/*.html', ['html']);
 });
 /*Serv*/
 gulp.task('serv', function(){
