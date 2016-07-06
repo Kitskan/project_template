@@ -30,6 +30,7 @@ gulp.task('watch', function () {
     gulp.watch('app/sass/style.scss', ['sass']);
     gulp.watch('dist/css/style.css', ['css']);
 });
+/*Serv*/
 gulp.task('serv', function(){
   browserSync.init({
     server: 'dist'
