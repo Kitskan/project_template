@@ -8,10 +8,11 @@ var rename = require("gulp-rename");
 var gcmq = require('gulp-group-css-media-queries');
 var uglify = require('gulp-uglify');
 var plumber = require('gulp-plumber');
+var gulpCopy = require('gulp-file-copy');
 var browserSync = require('browser-sync').create();
 /*Script*/
 gulp.task('script', function () {
-    gulp.src('src/js/**/*.js')
+    gulp.src(['src/js/**/*.js', '!src/js/**/*.min.js'])
         .pipe(uglify())
         .pipe(rename({suffix:'.min'}))
         .pipe(gulp.dest('src/js/'))
@@ -25,7 +26,7 @@ gulp.task('sass', function () {
 });
 /*CSS*/
 gulp.task('css', function() {
-    return gulp.src('src/css/style.css')
+    return gulp.src(['src/css/**/*.css', '!src/css/**/*min.css'])
         .pipe(autoprefixer({
             browsers: ['last 2 versions', '> 3%','ie 6-8'],
             cascade: false
@@ -33,7 +34,7 @@ gulp.task('css', function() {
         .pipe(gcmq())
         .pipe(gulp.dest('src/css/'))
         .pipe(minifyCSS())
-        .pipe(rename("style.min.css"))
+        .pipe(rename({suffix:'.min'}))
         .pipe(gulp.dest('src/css/'))
 });
 /*Html*/
@@ -47,7 +48,7 @@ gulp.task('build', ['script', 'sass', 'css', 'html']);
 /*Watch*/
 gulp.task('watch', function () {
     gulp.watch('src/sass/style.scss', ['sass']);
-    gulp.watch('src/css/style.css', ['css']);
+    gulp.watch('src/css/**/*.css', ['css']);
     gulp.watch('src/js/**/*.js', ['script']);
     gulp.watch('src/**/*.html', ['html']);
 });
@@ -58,4 +59,12 @@ gulp.task('serv', function(){
   });
   browserSync.watch('src/**/*.*').on('change', browserSync.reload);
 });
+/*Copy directory*/
+
+gulp.task('copy', function() {
+    gulp.src(['src/**/*.*', '!src/_layout/**/*.*', '!src/sass/**/*.*'])
+        .pipe(gulp.dest('build'))
+});
+
+
 gulp.task('default', ['build' ,'watch', 'serv']);
