@@ -9,6 +9,7 @@ var gcmq = require('gulp-group-css-media-queries');
 var uglify = require('gulp-uglify');
 var plumber = require('gulp-plumber');
 var gulpCopy = require('gulp-file-copy');
+var del = require('del');
 var browserSync = require('browser-sync').create();
 /*Script*/
 gulp.task('script', function () {
@@ -43,8 +44,8 @@ gulp.task('html', function () {
         .pipe(htmlAutoprefixer())
         .pipe(gulp.dest('src/'))
 });
-/*Build*/
-gulp.task('build', ['script', 'sass', 'css', 'html']);
+/*Start*/
+gulp.task('start', ['script', 'sass', 'css', 'html']);
 /*Watch*/
 gulp.task('watch', function () {
     gulp.watch('src/sass/style.scss', ['sass']);
@@ -59,12 +60,27 @@ gulp.task('serv', function(){
   });
   browserSync.watch('src/**/*.*').on('change', browserSync.reload);
 });
-/*Copy directory*/
 
-gulp.task('copy', function() {
-    gulp.src(['src/**/*.*', '!src/_layout/**/*.*', '!src/sass/**/*.*'])
-        .pipe(gulp.dest('build'))
+/*Build*/
+gulp.task('build:cleanfolder', function () {
+    del([
+        'build'
+    ]);
+});
+gulp.task('build:copy',['build:cleanfolder'], function(){
+    return gulp.src('src/**/*/')
+        .pipe(gulp.dest('build'));
+});
+gulp.task('build:remove',['build:copy'], function () {
+    del([
+        'build/sass/',
+        'build/_layout/',
+        'build/template/'
+    ]);
 });
 
+gulp.task('build', ['build:copy', 'build:remove']);
 
-gulp.task('default', ['build' ,'watch', 'serv']);
+
+/*Default*/
+gulp.task('default', ['start' ,'watch', 'serv']);
