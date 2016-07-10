@@ -8,6 +8,7 @@ var rename = require("gulp-rename");
 var gcmq = require('gulp-group-css-media-queries');
 var uglify = require('gulp-uglify');
 var plumber = require('gulp-plumber');
+var imgmin = require('gulp-imagemin');
 var del = require('del');
 var browserSync = require('browser-sync').create();
 /*Script*/
@@ -34,7 +35,12 @@ gulp.task('sass', function () {
         .pipe(gulp.dest('src/css/'))
         .pipe(browserSync.reload({stream: true}))
 });
-
+/*Imagemin*/
+gulp.task('imgmin', function () {
+    return gulp.src(['src/img/**/*', '!src/img/sprite/**/*'])
+        .pipe(imgmin())
+        .pipe(gulp.dest('src/img/'))
+});
 /*Html*/
 gulp.task('html', function () {
     gulp.src('src/*.html')
@@ -42,8 +48,9 @@ gulp.task('html', function () {
         .pipe(gulp.dest('src/'))
         .pipe(browserSync.reload({stream: true}))
 });
+
 /*Start*/
-gulp.task('start', ['script', 'sass', 'html']);
+gulp.task('start', ['script', 'sass', 'html', 'imgmin']);
 /*Watch*/
 gulp.task('watch', function () {
     gulp.watch('src/sass/style.scss', ['sass']);
@@ -73,7 +80,8 @@ gulp.task('build:remove',['build:copy'], function () {
     del([
         'build/sass/',
         'build/_layout/',
-        'build/template/'
+        'build/template/',
+        'build/img/sprite/'
     ]);
 });
 
