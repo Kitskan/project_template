@@ -8,7 +8,6 @@ var rename = require("gulp-rename");
 var gcmq = require('gulp-group-css-media-queries');
 var uglify = require('gulp-uglify');
 var plumber = require('gulp-plumber');
-var gulpCopy = require('gulp-file-copy');
 var del = require('del');
 var browserSync = require('browser-sync').create();
 /*Script*/
@@ -17,17 +16,13 @@ gulp.task('script', function () {
         .pipe(uglify())
         .pipe(rename({suffix:'.min'}))
         .pipe(gulp.dest('src/js/'))
+        .pipe(browserSync.reload({stream: true}))
 });
 /*Sass*/
 gulp.task('sass', function () {
-    return gulp.src('app/sass/style.scss')
-        .pipe(sass().on('error', sass.logError))
+    return gulp.src('src/sass/style.scss')
         .pipe(plumber())
-        .pipe(gulp.dest('src/css/'));
-});
-/*CSS*/
-gulp.task('css', function() {
-    return gulp.src(['src/css/**/*.css', '!src/css/**/*min.css'])
+        .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer({
             browsers: ['last 2 versions', '> 3%','ie 6-8'],
             cascade: false
@@ -37,28 +32,31 @@ gulp.task('css', function() {
         .pipe(minifyCSS())
         .pipe(rename({suffix:'.min'}))
         .pipe(gulp.dest('src/css/'))
+        .pipe(browserSync.reload({stream: true}))
 });
+
 /*Html*/
 gulp.task('html', function () {
-    gulp.src('src/**/*.html')
+    gulp.src('src/*.html')
         .pipe(htmlAutoprefixer())
         .pipe(gulp.dest('src/'))
+        .pipe(browserSync.reload({stream: true}))
 });
 /*Start*/
-gulp.task('start', ['script', 'sass', 'css', 'html']);
+gulp.task('start', ['script', 'sass', 'html']);
 /*Watch*/
 gulp.task('watch', function () {
     gulp.watch('src/sass/style.scss', ['sass']);
-    gulp.watch('src/css/**/*.css', ['css']);
     gulp.watch('src/js/**/*.js', ['script']);
     gulp.watch('src/**/*.html', ['html']);
 });
 /*Serv*/
 gulp.task('serv', function(){
   browserSync.init({
-    server: 'src'
+    server: {
+        baseDir: 'src'
+    }
   });
-  browserSync.watch('src/**/*.*').on('change', browserSync.reload);
 });
 
 /*Build*/
@@ -83,4 +81,4 @@ gulp.task('build', ['build:copy', 'build:remove']);
 
 
 /*Default*/
-gulp.task('default', ['start' ,'watch', 'serv']);
+gulp.task('default', ['start', 'serv','watch']);
