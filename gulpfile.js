@@ -1,4 +1,5 @@
-'use strict'
+/*jslint node: true */
+'use strict';
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
@@ -17,7 +18,7 @@ gulp.task('script', function () {
         .pipe(uglify())
         .pipe(rename({suffix:'.min'}))
         .pipe(gulp.dest('src/js/'))
-        .pipe(browserSync.reload({stream: true}))
+        .pipe(browserSync.reload({stream: true}));
 });
 /*Sass*/
 gulp.task('sass', function () {
@@ -33,20 +34,20 @@ gulp.task('sass', function () {
         .pipe(minifyCSS())
         .pipe(rename({suffix:'.min'}))
         .pipe(gulp.dest('src/css/'))
-        .pipe(browserSync.reload({stream: true}))
+        .pipe(browserSync.reload({stream: true}));
 });
 /*Imagemin*/
 gulp.task('imgmin', function () {
     return gulp.src(['src/img/**/*', '!src/img/sprite/**/*'])
         .pipe(imgmin())
-        .pipe(gulp.dest('src/img/'))
+        .pipe(gulp.dest('src/img/'));
 });
 /*Html*/
 gulp.task('html', function () {
     gulp.src('src/*.html')
         .pipe(htmlAutoprefixer())
         .pipe(gulp.dest('src/'))
-        .pipe(browserSync.reload({stream: true}))
+        .pipe(browserSync.reload({stream: true}));
 });
 
 /*Start*/
