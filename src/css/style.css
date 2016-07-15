@@ -254,6 +254,9 @@ img {
 .clearfix:after {
   content: " ";
   display: table;
+}
+
+.clearfix:after {
   clear: both;
 }
 
