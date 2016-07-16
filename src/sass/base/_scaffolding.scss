@@ -41,13 +41,47 @@ img {
   @include clearfix();
 }
 
-
+// Avoid 300ms click delay on touch devices that support the `touch-action` CSS property.
+// see:
+// http://v4-alpha.getbootstrap.com/content/reboot/#click-delay-optimization-for-touch
+// http://caniuse.com/#feat=css-touch-action
+// http://patrickhlauke.github.io/touch/tests/results/#suppressing-300ms-delay
+a,
+area,
+button,
+[role='button'],
+input,
+label,
+select,
+summary,
+textarea {
+  touch-action: manipulation;
+}
 
 html {
   box-sizing: border-box;
   min-height: 100%;
   font-size: $font-size--root;
+  min-width: 320px;
+  min-height: 100%;
 }
 *, *:before, *:after {
   box-sizing: inherit;
+}
+
+body {
+  font-family: $font-family;
+  font-size: $font-size--base;
+  color: $black;
+  min-width: 320px;
+}
+
+a {
+  color: $black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.container {
+  @include container();
 }
