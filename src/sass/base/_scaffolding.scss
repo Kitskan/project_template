@@ -60,10 +60,9 @@ textarea {
 
 html {
   box-sizing: border-box;
-  min-height: 100%;
-  font-size: $font-size--root;
   min-width: 320px;
   min-height: 100%;
+  font-size: $font-size--root;
 }
 *, *:before, *:after {
   box-sizing: inherit;
@@ -84,4 +83,8 @@ a {
 
 .container {
   @include container();
+}
+
+.row {
+  @include row()
 }

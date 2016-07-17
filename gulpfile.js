@@ -2,9 +2,9 @@
 'use strict';
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var cleanCSS = require('gulp-clean-css');
 var autoprefixer = require('gulp-autoprefixer');
 var htmlAutoprefixer = require("gulp-html-autoprefixer");
-var csso = require('gulp-csso');
 var rename = require("gulp-rename");
 var gcmq = require('gulp-group-css-media-queries');
 var uglify = require('gulp-uglify');
@@ -28,14 +28,14 @@ gulp.task('script', function () {
 gulp.task('sass', function () {
    return gulp.src('src/sass/style.scss')
    .pipe(plumber())
-   .pipe(sass().on('error', sass.logError))
+   .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
    .pipe(autoprefixer({
       browsers: ['last 2 versions', '> 3%', 'ie 6-8'],
       cascade: false
    }))
    .pipe(gcmq())
    .pipe(gulp.dest('src/css/'))
-   .pipe(csso())
+   .pipe(cleanCSS({keepSpecialComments: 0}))
    .pipe(rename({
       suffix: '.min'
    }))
