@@ -33,6 +33,7 @@ gulp.task('sass', function () {
       browsers: ['last 2 versions', '> 3%', 'ie 6-8'],
       cascade: false
    }))
+   .pipe(gcmq())
    .pipe(gulp.dest('src/css/'))
    .pipe(cleanCSS({keepSpecialComments: 0}))
    .pipe(rename({

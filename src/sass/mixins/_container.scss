@@ -1,6 +1,5 @@
 @mixin container-fixed($gutter: $grid-gutter-width) {
   display: block;
-  width: 100%;
   margin-left: auto;
   margin-right: auto;
   padding-left:  floor(($gutter / 2));
