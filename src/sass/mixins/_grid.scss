@@ -1,5 +1,5 @@
 //////////////////////////////
-// Framework grid generation//
+// Framework grid generation float//
 //////////////////////////////
 @mixin make-grid-columns($i: 1, $list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}") {
   @for $i from (1 + 1) through $grid-columns {
@@ -96,18 +96,18 @@
   padding-left:  ($gutter / 2);
   padding-right: ($gutter / 2);
 
-  @media (min-width: $screen-sm-min) {
+  @media (min-width: $screen-sm) {
     float: left;
     width: percentage(($columns / $grid-columns));
   }
 }
 @mixin make-sm-column-push($columns) {
-  @media (min-width: $screen-sm-min) {
+  @media (min-width: $screen-sm) {
     left: percentage(($columns / $grid-columns));
   }
 }
 @mixin make-sm-column-pull($columns) {
-  @media (min-width: $screen-sm-min) {
+  @media (min-width: $screen-sm) {
     right: percentage(($columns / $grid-columns));
   }
 }
@@ -119,19 +119,19 @@
   padding-left:  ($gutter / 2);
   padding-right: ($gutter / 2);
 
-  @media (min-width: $screen-md-min) {
+  @media (min-width: $screen-md) {
     float: left;
     width: percentage(($columns / $grid-columns));
   }
 }
 
 @mixin make-md-column-push($columns) {
-  @media (min-width: $screen-md-min) {
+  @media (min-width: $screen-md) {
     left: percentage(($columns / $grid-columns));
   }
 }
 @mixin make-md-column-pull($columns) {
-  @media (min-width: $screen-md-min) {
+  @media (min-width: $screen-md) {
     right: percentage(($columns / $grid-columns));
   }
 }
@@ -143,18 +143,18 @@
   padding-left:  ($gutter / 2);
   padding-right: ($gutter / 2);
 
-  @media (min-width: $screen-lg-min) {
+  @media (min-width: $screen-lg) {
     float: left;
     width: percentage(($columns / $grid-columns));
   }
 }
 @mixin make-lg-column-push($columns) {
-  @media (min-width: $screen-lg-min) {
+  @media (min-width: $screen-lg) {
     left: percentage(($columns / $grid-columns));
   }
 }
 @mixin make-lg-column-pull($columns) {
-  @media (min-width: $screen-lg-min) {
+  @media (min-width: $screen-lg) {
     right: percentage(($columns / $grid-columns));
   }
 }

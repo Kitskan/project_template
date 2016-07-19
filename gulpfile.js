@@ -28,12 +28,11 @@ gulp.task('script', function () {
 gulp.task('sass', function () {
    return gulp.src('src/sass/style.scss')
    .pipe(plumber())
-   .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+   .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
    .pipe(autoprefixer({
       browsers: ['last 2 versions', '> 3%', 'ie 6-8'],
       cascade: false
    }))
-   .pipe(gcmq())
    .pipe(gulp.dest('src/css/'))
    .pipe(cleanCSS({keepSpecialComments: 0}))
    .pipe(rename({
