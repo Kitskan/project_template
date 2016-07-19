@@ -83,10 +83,12 @@ a {
 
 .container {
   @include container-fixed();
+  @include clearfix();
 }
 
 .row {
-  @include row()
+  @include row();
+  @include clearfix();
 }
 
 // Columns
