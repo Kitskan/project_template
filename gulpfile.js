@@ -53,11 +53,9 @@ gulp.task('imgmin', function () {
 /*Html*/
 gulp.task('html', function () {
    gulp.src('src/*.html')
-   .pipe(htmlAutoprefixer())
-   .pipe(gulp.dest('src/'))
-   .pipe(browserSync.reload({
-      stream: true
-   }));
+     .pipe(browserSync.reload({
+        stream: true
+        }));
 });
 
 /*Start*/
