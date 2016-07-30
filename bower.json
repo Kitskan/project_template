@@ -15,7 +15,8 @@
     "test",
     "tests"
   ],
-  "dependencies": {
-    "bootstrap-sass": "^3.3.6",
+  "dependencies": {},
+  "devDependencies": {
+    "normalize-css": "normalize.css#^4.2.0"
   }
 }
