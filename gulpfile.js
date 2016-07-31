@@ -9,11 +9,12 @@ var uglify = require('gulp-uglify');
 var plumber = require('gulp-plumber');
 var imgmin = require('gulp-imagemin');
 var del = require('del');
+var flatten = require('gulp-flatten');
 var browserSync = require('browser-sync').create();
 var svgSprite = require('gulp-svg-sprite');
 
 //Sprite task
-gulp.task('svg', function () {
+gulp.task('svg:start', function () {
   var config = {
     shape: {
       dimension: {			// Set maximum dimensions
@@ -37,8 +38,17 @@ gulp.task('svg', function () {
 
   gulp.src('src/img/sprite/*.svg')
       .pipe(svgSprite(config))
-      .pipe(gulp.dest('src/img/svg/'));
+      .pipe(flatten())
+      .pipe(gulp.dest('src/img'))
 });
+
+gulp.task('svg:remove', ['svg:start'], function () {
+  del([
+    'src/img/svg'
+  ]);
+});
+
+gulp.task('svg', ['svg:start','svg:remove']);
 
 /*Script*/
 gulp.task('script', function () {
@@ -74,7 +84,7 @@ gulp.task('sass', function () {
 });
 /*Imagemin*/
 gulp.task('imgmin', function () {
-  return gulp.src(['src/img/**/*', '!src/img/sprite/**/*'])
+  return gulp.src(['src/img/**/*', '!src/img/sprite/**/*','!src/img/svg/**/*', '!src/img/view/**/*'])
       .pipe(imgmin())
       .pipe(gulp.dest('src/img/'));
 });
@@ -121,8 +131,9 @@ gulp.task('build:remove', ['build:copy'], function () {
     'build/_layout/',
     'build/template/',
     'build/img/sprite/',
-    'build/img/svg/symbol/',
-    'build/img/svg/view/*.scss'
+    'build/img/svg/',
+    'build/lib/'
+
   ]);
 });
 
