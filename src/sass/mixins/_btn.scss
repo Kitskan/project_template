@@ -1,0 +1,8 @@
+@mixin btn {
+  display: block;
+  text-decoration: none;
+  list-style: none;
+  border: none;
+  outline: none;
+  color: $black;
+}

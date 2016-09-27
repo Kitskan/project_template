@@ -18,3 +18,13 @@
     width: $container-lg;
   }
 }
+
+@mixin container--fixed {
+  display: block;
+  margin: 0 auto;
+  @media (min-width: $screen-md-min) {
+    width: 960px;
+    padding-left:  10px;
+    padding-right: 10px;
+  }
+}
