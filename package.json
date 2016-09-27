@@ -1,5 +1,5 @@
 {
-  "name": "Pink",
+  "name": "",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,10 +12,6 @@
   },
   "author": "Kitskan",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Kitskan/project_template/issues"
-  },
-  "homepage": "https://github.com/Kitskan/project_template#readme",
   "devDependencies": {
     "browser-sync": "^2.13.0",
     "del": "^2.2.1",
