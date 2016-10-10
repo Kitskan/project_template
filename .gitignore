@@ -1,6 +1,6 @@
 bower_components/
 node_modules/
-dist/
+build/
 src/lib/
 src/_layout
 .idea/
