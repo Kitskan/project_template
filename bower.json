@@ -1,12 +1,12 @@
 {
-  "name": "Pink",
+  "name": "Test",
   "description": "",
   "main": "index.js",
   "authors": [
     "Kitskan"
   ],
   "license": "ISC",
-  "homepage": "https://github.com/Kitskan/project_template",
+  "homepage": "",
   "private": true,
   "ignore": [
     "**/.*",
@@ -19,6 +19,5 @@
   "devDependencies": {
     "normalize-css": "normalize.css#^4.2.0",
     "bootstrap-sass": "^3.3.7",
-    "slick-carousel": "^1.6.0"
   }
 }
