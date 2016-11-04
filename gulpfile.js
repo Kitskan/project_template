@@ -64,7 +64,10 @@ gulp.task('script', function () {
 gulp.task('sass', function () {
   return gulp.src('src/sass/**/*.scss')
     .pipe(plumber())
-    .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
+    .pipe(sass({
+      outputStyle: 'expanded'
+      //includePaths: ['node_modules/susy/sass']
+    }).on('error', sass.logError))
     .pipe(autoprefixer({
       browsers: ['last 2 versions', '> 3%', 'ie 10'],
       cascade: false
