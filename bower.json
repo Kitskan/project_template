@@ -17,7 +17,6 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "normalize-css": "normalize.css#^4.2.0",
-    "bootstrap-sass": "^3.3.7",
+    "normalize-css": "normalize.css#^4.2.0"
   }
 }

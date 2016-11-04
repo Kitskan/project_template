@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "name",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -23,6 +23,7 @@
     "gulp-sass": "^2.3.2",
     "gulp-svg-symbols": "^2.0.0",
     "gulp-sync": "^0.1.4",
-    "gulp-uglify": "^2.0.0"
+    "gulp-uglify": "^2.0.0",
+    "susy": "^2.2.12"
   }
 }
