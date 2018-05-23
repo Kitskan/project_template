@@ -1,7 +1,9 @@
 'use strict';
 var gulp = require('gulp');
 var gulpsync = require('gulp-sync')(gulp);
+//Preproc Css
 var sass = require('gulp-sass');
+var less = require('gulp-less');
 var cleanCSS = require('gulp-clean-css');
 var concat = require('gulp-concat');
 var autoprefixer = require('gulp-autoprefixer');
@@ -11,7 +13,6 @@ var uglify = require('gulp-uglify');
 var plumber = require('gulp-plumber');
 var imgmin = require('gulp-imagemin');
 var del = require('del');
-var flatten = require('gulp-flatten');
 var browserSync = require('browser-sync').create();
 var svgSymbols = require('gulp-svg-symbols');
 var pcg = require('./package.json');
@@ -28,6 +29,9 @@ var path = {
   }
 };
 
+//PreProc choose
+
+var
 
 gulp.task('log', function () {
   console.log(path.pathDel.layout);
@@ -59,6 +63,27 @@ gulp.task('script', function () {
     .pipe(browserSync.reload({
       stream: true
     }));
+});
+//Preproc
+//Less
+gulp.task('less', function () {
+  return gulp.src('src/less/**/*.less')
+  .pipe(plumber())
+  .pipe(less())
+  .pipe(autoprefixer({
+    browsers: ['last 2 versions', '> 3%', 'ie 10'],
+    cascade: false
+  }))
+  .pipe(gcmq())
+  .pipe(gulp.dest('src/css/'))
+  .pipe(cleanCSS({keepSpecialComments: 0}))
+  .pipe(rename({
+    suffix: '.min'
+  }))
+  .pipe(gulp.dest('src/css/'))
+  .pipe(browserSync.reload({
+    stream: true
+  }));
 });
 /*Sass*/
 gulp.task('sass', function () {
